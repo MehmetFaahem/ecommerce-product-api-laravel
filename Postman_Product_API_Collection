@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "c33149a6-8796-43e6-b6c8-b325544d7251",
+		"name": "Product REST API",
+		"description": "**Description**:  \nThis Postman collection is designed to facilitate interaction with the Product Management API. It provides endpoints for managing products, including creating, reading, updating, and deleting (CRUD) product records. The API is built with Laravel and supports comprehensive features for managing product data, including categories, images, reviews, pricing, sizes, colors, and stock.\n\n---\n\n### **Collection Structure**\n\n1. **Base URL**:\n    \n    - All endpoints use the base URL: `https://ecommerce-product-api-laravel-production.up.railway.app/api`  \n        \n2. **Endpoints**:\n    \n    - `GET /products` – Retrieve all products.\n        \n    - `GET /products/{id}` – Retrieve a single product by ID.\n        \n    - `POST /products` – Add a new product.\n        \n    - `PUT /products/{id}` – Update an existing product by ID.\n        \n    - `DELETE /products/{id}` – Delete a product by ID.\n        \n3. **Authorization**:\n    \n    - Currently, no authentication is required.\n        \n4. **Headers**:\n    \n    - All requests include the header: `Content-Type: application/json`.\n        \n\n---\n\n### **Example Usage**\n\n1. **Adding a Product**:  \n    Use the `POST /products` endpoint with a JSON body to create a product. An example payload is included in the collection for quick reference.\n    \n2. **Fetching Products**:  \n    Use the `GET /products` or `GET /products/{id}` endpoints to fetch product information. Responses include detailed attributes.\n    \n3. **Updating a Product**:  \n    Use the `PUT /products/{id}` endpoint with updated JSON data to modify a product. An example payload is included in the collection for quick reference.\n    \n4. **Deleting a Product**:  \n    Use the `DELETE /products/{id}` endpoint to remove a product from the system.\n    \n\n---\n\n### **How to Use**\n\n1. Import the Postman collection into your Postman app.\n    \n2. Set the base URL as an environment variable for easier testing and flexibility.\n    \n3. Use the provided examples to test each endpoint.\n    \n4. Modify the request payloads as per your requirements.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20770960"
+	},
+	"item": [
+		{
+			"name": "Create a Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Charms Charisma Heavy Winter Full Sleeve Jacket with Hoodie\",\n  \"description\": \"The garments labeled as committed are products that have been produced using sustainable fibers or processes, reducing their environmental impact. Umino's goal is to support the implementation of practices more committed to the environment.\",\n  \"sku\": \"234324s\",\n  \"categories\": [\"Fashion\", \"Winter\", \"Women\", \"New Arrivals\", \"Flash Sales\", \"Special Offer\", \"Hoodie\"],\n  \"images\": [\n    { \"src\": \"https://cdn.pixabay.com/photo/2014/01/22/19/38/boot-250012_1280.jpg\", \"alt\": \"Gray Jacket Front View\", \"id\": \"img1\" },\n    { \"src\": \"https://cdn.pixabay.com/photo/2016/03/30/12/18/sport-1290543_640.png\", \"alt\": \"Jacket Inner View\", \"id\": \"img2\" },\n    { \"src\": \"https://cdn.pixabay.com/photo/2017/02/17/05/53/shoe-2073425_640.jpg\", \"alt\": \"Red Jacket Front View\", \"id\": \"img3\" },\n    { \"src\": \"https://cdn.pixabay.com/photo/2021/03/08/12/31/oxford-shoes-6078993_640.jpg\", \"alt\": \"Red Jacket Front View\", \"id\": \"img4\" },\n    { \"src\": \"https://cdn.pixabay.com/photo/2021/03/19/11/28/brogue-shoes-6107310_640.jpg\", \"alt\": \"Red Jacket Front View\", \"id\": \"img5\" }\n  ],\n  \"main_image\": { \"src\": \"https://cdn.pixabay.com/photo/2021/03/08/12/31/oxford-shoes-6078993_640.jpg\", \"alt\": \"Gray Jacket Front View\", \"id\": \"img1\" },\n  \"reviews\": {\n    \"rating\": 4.5,\n    \"totalReviews\": 98,\n    \"totalSold\": 500,\n    \"detailedReviews\": [\n      { \"rating\": 5, \"text\": \"Very warm and comfortable!\" },\n      { \"rating\": 4, \"text\": \"Great fit, but could use more color options.\" }\n    ]\n  },\n  \"pricing\": {\n    \"currentPrice\": 100.0,\n    \"originalPrice\": 129.99,\n    \"discount\": 17,\n    \"currency\": \"USD\"\n  },\n  \"sizes\": [\n    { \"value\": \"S\", \"label\": \"22\", \"available\": true, \"selected\": false },\n    { \"value\": \"M\", \"label\": \"24\", \"available\": true, \"selected\": true },\n    { \"value\": \"L\", \"label\": \"26\", \"available\": true, \"selected\": false },\n    { \"value\": \"XL\", \"label\": \"28\", \"available\": false, \"selected\": false },\n    { \"value\": \"2XL\", \"label\": \"30\", \"available\": true, \"selected\": false }\n  ],\n  \"colors\": [\n    { \"value\": \"gray\", \"label\": \"Gray\", \"hex\": \"#808080\", \"selected\": true },\n    { \"value\": \"red\", \"label\": \"Red\", \"hex\": \"#8B0000\", \"selected\": false },\n    { \"value\": \"blue\", \"label\": \"Blue\", \"hex\": \"#0000FF\", \"selected\": false }\n  ],\n  \"stock\": {\n    \"status\": \"IN_STOCK\",\n    \"quantity\": 50\n  },\n  \"delivery\": {\n    \"estimatedRange\": {\n      \"start\": \"2024-06-09\",\n      \"end\": \"2024-06-17\"\n    },\n    \"returnPeriod\": 5\n  },\n  \"outstanding_features\": [\n    \"Tonal stitching: 98% cotton, 2% elastane.\",\n    \"Supple and stretch knit with a rich touch of wool.\",\n    \"Model: Model is 6'1\\\", wearing a size M.\",\n    \"Caring for your clothes is caring for the environment.\"\n  ],\n  \"washing_instructions\": [\n    \"Machine wash max. 30°C. Short spin.\",\n    \"Iron maximum 110°C.\",\n    \"Do not bleach/dry clean.\",\n    \"Tumble dry, medium heat.\"\n  ],\n  \"specifications\": [\n    \"Material: 98% Cotton, 2% Elastane\",\n    \"Knitted with a touch of wool\",\n    \"Model height: 6'1\\\", wearing size M\"\n  ],\n  \"shipping\": {\n    \"estimatedDelivery\": \"June 9 - June 17\",\n    \"returnPolicy\": \"Free return within 5 days of purchase.\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/products",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/products",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products"
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Product",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/products/12",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update a Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful PUT request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Charms\",\n  \"description\": \"The garments labeled as committed are products that have been produced using sustainable fibers or processes, reducing their environmental impact. Umino's goal is to support the implementation of practices more committed to the environment.\",\n  \"sku\": \"234324s\",\n  \"categories\": [\"Fashion\", \"Winter\", \"Women\", \"New Arrivals\", \"Special Offer\", \"Hoodie\"],\n  \"images\": [\n    { \"src\": \"https://cdn.pixabay.com/photo/2014/01/22/19/38/boot-250012_1280.jpg\", \"alt\": \"Gray Jacket Front View\", \"id\": \"img1\" },\n    { \"src\": \"https://cdn.pixabay.com/photo/2016/03/30/12/18/sport-1290543_640.png\", \"alt\": \"Jacket Inner View\", \"id\": \"img2\" },\n    { \"src\": \"https://cdn.pixabay.com/photo/2017/02/17/05/53/shoe-2073425_640.jpg\", \"alt\": \"Red Jacket Front View\", \"id\": \"img3\" },\n    { \"src\": \"https://cdn.pixabay.com/photo/2021/12/13/12/08/shoes-6868119_1280.jpg\", \"alt\": \"Red Jacket Front View\", \"id\": \"img4\" },\n    { \"src\": \"https://cdn.pixabay.com/photo/2021/03/19/11/28/brogue-shoes-6107310_640.jpg\", \"alt\": \"Red Jacket Front View\", \"id\": \"img5\" }\n  ],\n  \"main_image\": { \"src\": \"https://cdn.pixabay.com/photo/2014/01/22/19/38/boot-250012_1280.jpg\", \"alt\": \"Gray Jacket Front View\", \"id\": \"img1\" },\n  \"reviews\": {\n    \"rating\": 4.5,\n    \"totalReviews\": 98,\n    \"totalSold\": 500,\n    \"detailedReviews\": [\n      { \"rating\": 5, \"text\": \"Very warm and comfortable!\" },\n      { \"rating\": 4, \"text\": \"Great fit, but could use more color options.\" }\n    ]\n  },\n  \"pricing\": {\n    \"currentPrice\": 110.0,\n    \"originalPrice\": 129.99,\n    \"discount\": 17,\n    \"currency\": \"$\"\n  },\n  \"sizes\": [\n    { \"value\": \"S\", \"label\": \"22\", \"available\": true, \"selected\": false },\n    { \"value\": \"M\", \"label\": \"24\", \"available\": true, \"selected\": true },\n    { \"value\": \"L\", \"label\": \"26\", \"available\": true, \"selected\": false },\n    { \"value\": \"XL\", \"label\": \"28\", \"available\": false, \"selected\": false },\n    { \"value\": \"2XL\", \"label\": \"30\", \"available\": true, \"selected\": false }\n  ],\n  \"colors\": [\n    { \"value\": \"gray\", \"label\": \"Gray\", \"hex\": \"#808080\", \"selected\": true },\n    { \"value\": \"red\", \"label\": \"Red\", \"hex\": \"#8B0000\", \"selected\": false },\n    { \"value\": \"blue\", \"label\": \"Blue\", \"hex\": \"#0000FF\", \"selected\": false }\n  ],\n  \"stock\": {\n    \"status\": \"IN_STOCK\",\n    \"quantity\": 50\n  },\n  \"delivery\": {\n    \"estimatedRange\": {\n      \"start\": \"2025-01-01\",\n      \"end\": \"2025-01-17\"\n    },\n    \"returnPeriod\": 5\n  },\n  \"outstanding_features\": [\n    \"Tonal stitching: 98% cotton, 2% elastane.\",\n    \"Supple and stretch knit with a rich touch of wool.\",\n    \"Model: Model is 6'1\\\", wearing a size M.\",\n    \"Caring for your clothes is caring for the environment.\"\n  ],\n  \"washing_instructions\": [\n    \"Machine wash max. 30°C. Short spin.\",\n    \"Iron maximum 110°C.\",\n    \"Do not bleach/dry clean.\",\n    \"Tumble dry, medium heat.\"\n  ],\n  \"specifications\": [\n    \"Material: 98% Cotton, 2% Elastane\",\n    \"Knitted with a touch of wool\",\n    \"Model height: 6'1\\\", wearing size M\"\n  ],\n  \"shipping\": {\n    \"estimatedDelivery\": \"June 9 - June 17\",\n    \"returnPolicy\": \"Free return within 5 days of purchase.\"\n  }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/products/15",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products",
+						"15"
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful DELETE request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/products/11",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"products",
+						"11"
+					]
+				},
+				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "http://127.0.0.1:8000/api"
+		}
+	]
+}
